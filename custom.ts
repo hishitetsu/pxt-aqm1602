@@ -50,6 +50,7 @@ namespace aqm1602 {
      * @param y 行のインデックス
      */
     //% weight=80 block="表示位置 行%y 列%x"
+    //% x.min=0 x.max=15 y.min=0 y.max=1
     export function changePosition(x: number, y: number): void {
         writeCommand(0x80 + (y * 0x40 + x))
     }
