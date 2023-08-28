@@ -46,13 +46,13 @@ namespace aqm1602 {
 
     /**
      * 文字列の表示位置を変更する
-     * @param x 列のインデックス
      * @param y 行のインデックス
+     * @param x 列のインデックス
      */
     //% weight=80 block="表示位置 行%y 列%x"
-    //% x.min=0 x.max=15 y.min=0 y.max=1
-    export function changePosition(x: number, y: number): void {
-        writeCommand(0x80 + (y * 0x40 + x))
+    //% y.min=0 y.max=1 x.min=0 x.max=15
+    export function changePosition(y: number, x: number): void {
+        writeCommand(0x80 + y * 0x40 + x)
     }
 
     /**
