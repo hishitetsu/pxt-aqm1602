@@ -34,13 +34,13 @@ namespace aqm1602 {
      */
     //% weight=90 block="文字列を表示%str || 出力文字%outputChar"
     //% str.defl="Hello!"
-    export function print(str: string, outputChar: OutputChar = OutputChar.Lowercase): void {
+    export function printString(str: string, outputChar: OutputChar = OutputChar.Lowercase): void {
         for (let i = 0; i < str.length; i++) {
             let charCode = str.charCodeAt(i)
             if (outputChar == OutputChar.Katakana && charCode > 0x60 && charCode < 0xA0) {
                 charCode += 0x40
             }
-            writeData(charCode)
+            printChar(charCode)
         }
     }
 
@@ -63,13 +63,13 @@ namespace aqm1602 {
         writeCommand(0x01)
     }
 
-    function writeData(data: number): void {
-        pins.i2cWriteNumber(
-            0x3E,
-            0x4000 + data,
-            NumberFormat.UInt16BE,
-            false
-        )
+    /**
+     * 指定された文字コードの文字を表示する
+     * @param code 文字コード
+     */
+    //% weight=60 block="文字コード%codeの文字を表示"
+    export function printChar(code: number): void {
+        writeCommand(0x4000 + code)
     }
 
     function writeCommand(command: number): void {
