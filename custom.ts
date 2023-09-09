@@ -69,7 +69,9 @@ namespace aqm1602 {
      */
     //% weight=60 block="文字コード%codeの文字を表示"
     export function printChar(code: number): void {
-        writeCommand(0x4000 + code)
+        if (code >= 0x00 && code <= 0xFF) {
+            writeCommand(0x4000 + code)
+        }
     }
 
     function writeCommand(command: number): void {
